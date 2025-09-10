@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* Règle universelle pour inclure padding et bordure dans la taille des éléments */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #e8f5e9;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    text-align: center;
+}
+
+.header {
+    margin-bottom: 2rem;
+}
+
+.header h1 {
+    color: #2e7d32;
+    font-size: 2.5rem;
+}
+
+.container {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 450px;
+    position: relative;
+    overflow: hidden;
+}
+
+.form-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.5s ease-in-out;
+}
+
+.form {
+    width: 100%;
+    flex-shrink: 0;
+    padding: 0 1rem;
+}
+
+.form h2 {
+    color: #43a047;
+    margin-bottom: 1.5rem;
+}
+
+/* Updated selector to include the <select> element */
+.form input,
+.form select {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #66bb6a;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #4caf50;
+}
+
+.form p {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+.form a {
+    color: #43a047;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.user-type {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 1rem;
+}
+
+.user-type label {
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
