@@ -1,0 +1,68 @@
+-- ================================
+-- Création de la base de données
+-- ================================
+CREATE DATABASE IF NOT EXISTS GreenCura;
+USE GreenCura;
+
+-- ================================
+-- Table Disease (maladies)
+-- ================================
+CREATE TABLE disease (
+    id INT  AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) UNIQUE NOT NULL,
+    description TEXT,
+    image_url VARCHAR(255) NULL  -- This is the new column
+);
+
+-- ================================
+-- Table Plant (plantes médicinales)
+-- ================================
+CREATE TABLE plant (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) UNIQUE NOT NULL,
+    description TEXT,
+    image_url VARCHAR(255)
+);
+
+-- ================================
+-- Table User (unified user table)
+-- ================================
+CREATE TABLE user (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    phone VARCHAR(50),
+    password VARCHAR(255) NOT NULL,
+    -- Add a 'role' column to differentiate between user types
+    role ENUM('patient', 'doctor', 'admin') NOT NULL
+);
+
+-- ================================
+-- Relation Doctor - Disease
+-- (A doctor can be an expert on several diseases)
+
+-- ================================
+CREATE TABLE doctor_disease (
+    user_id INT,
+    disease_id INT,
+    PRIMARY KEY (user_id, disease_id),
+    FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE,
+    FOREIGN KEY (disease_id) REFERENCES disease(id) ON DELETE CASCADE
+);
+
+-- ================================
+-- Relation Disease - Plant
+-- (A disease can have several plants, a plant can treat several diseases)
+-- ================================
+CREATE TABLE disease_plant (
+    disease_id INT,
+    plant_id INT,
+    PRIMARY KEY (disease_id, plant_id),
+    FOREIGN KEY (disease_id) REFERENCES disease(id) ON DELETE CASCADE,
+    FOREIGN KEY (plant_id) REFERENCES plant(id) ON DELETE CASCADE
+);
+-- ================================
+-- Insertion automatique de l'utilisateur admin
+-- ================================
+INSERT INTO user (name, email, phone, password, role)
+VALUES ('Admin User', 'admin@example.com', NULL, '$2y$10$57Xir2TLl9OGUqGsJN2phO2E6fZ82zMRaJ0sQ9tzE6aSiM9WLSOTC', 'admin');
